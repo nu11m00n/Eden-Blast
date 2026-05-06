@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3krorfu6shx0"]
+[gd_scene load_steps=9 format=3 uid="uid://b3krorfu6shx0"]
 
 [ext_resource type="Script" path="res://circleHUD.gd" id="1_txugf"]
 [ext_resource type="Texture2D" uid="uid://bwfhe8aqr2y5t" path="res://assets/HUD.png" id="2_knejg"]
 [ext_resource type="Texture2D" uid="uid://bh52gfo1v3adn" path="res://assets/HUD2.png" id="4_3mw1a"]
+[ext_resource type="Script" path="res://crosshair.gd" id="5_jlq7d"]
+[ext_resource type="Script" path="res://debug_menu.gd" id="6_7kp2h"]
 
 [sub_resource type="Animation" id="Animation_a3o56"]
 resource_name = "HUD"
@@ -53,6 +55,27 @@ vertical_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_c0tf3")
 }
+
+[node name="Crosshair" type="Control" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_jlq7d")
+
+[node name="DebugMenu" type="Control" parent="."]
+z_index = 20
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_7kp2h")
 
 [connection signal="mouse_entered" from="Label" to="." method="_on_label_mouse_entered"]
 [connection signal="mouse_exited" from="Label" to="." method="_on_label_mouse_exited"]

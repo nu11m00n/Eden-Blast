@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=4 uid="uid://b1kifqeod4uaf"]
+[gd_scene load_steps=18 format=4 uid="uid://b1kifqeod4uaf"]
 
+[ext_resource type="Script" path="res://assets/the_tablet.gd" id="1_s2q8p"]
 [ext_resource type="VideoStream" path="res://assets/TabletUI2.mp4" id="1_wten7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l447o"]
@@ -162,13 +163,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bqwhk")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_braam"]
-viewport_path = NodePath("Sketchfab_model/root/GLTF_SceneRootNode/ekran_3/Object_10/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66ohf"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_braam")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5kpm"]
 resource_name = "material"
 cull_mode = 2
@@ -210,6 +204,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2apnr")
 
 [node name="Sketchfab_Scene" type="Node3D"]
+script = ExtResource("1_s2q8p")
 
 [node name="Sketchfab_model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -243,7 +238,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00422199)
 [node name="Object_10" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/ekran_3"]
 mesh = SubResource("ArrayMesh_8taom")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_66ohf")
 
 [node name="SubViewport" type="SubViewport" parent="Sketchfab_model/root/GLTF_SceneRootNode/ekran_3/Object_10"]
 size = Vector2i(1280, 720)

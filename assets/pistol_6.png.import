@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhi2bj4bv0gdd"
+uid="uid://d1tm5aaxsbfh5"
 path.s3tc="res://.godot/imported/pistol_6.png-be11b13cce3d4d1f2fd76fb25df6d278.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

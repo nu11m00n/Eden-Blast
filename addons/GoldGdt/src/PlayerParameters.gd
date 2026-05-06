@@ -32,13 +32,14 @@ enum BunnyhopCapMode {
 @export var AIR_ACCELERATION : float = 10.0 ## The base acceleration amount that is multiplied by [code]wishspeed[/code] inside of [method _airaccelerate]. The default value equals 10.
 @export var FRICTION : float = 4.0 ## The multiplier of dropped speed when friction is acting on the player. The default value equals 4.
 @export var DUCKING_SPEED_MULTIPLIER : float = 0.333; ## The multiplier placed on the player's desired input speed while ducking. The default value equals 0.333.
+@export var WALK_SPEED_MULTIPLIER : float = 0.5 ## The multiplier applied while holding the tactical walk key.
 @export_subgroup("Bunny-hop Cap")
 @export var BUNNYHOP_CAP_MODE : BunnyhopCapMode = BunnyhopCapMode.NONE ## How the player responds when jumping while past the speed threshold.
 @export var SPEED_THRESHOLD_FACTOR : float = 1.7 ## How many times over [code]MAX_SPEED[/code] the player can have when performing a jump.
 @export var SPEED_DROP_FACTOR : float = 1.1 ## How many times over [code]MAX_SPEED[/code] the player can have when performing a jump.
 
 @export_group("Camera")
-@export var MOUSE_SENSITIVITY : float = 12.0 ## How fast the camera moves in response to player input. The default value equals 15.
+@export var MOUSE_SENSITIVITY : float = 1.0 ## CS2-style sensitivity scalar. Combined with Source's 0.022 yaw factor.
 @export var BOB_FREQUENCY : float = 0.008
 @export var BOB_FRACTION : float = 12
 @export var ROLL_ANGLE : float = 0.65

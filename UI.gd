@@ -3,7 +3,7 @@ extends Control
 @onready var bullets = [$Background/Bullet, $Background/Bullet2, $Background/Bullet3, $Background/Bullet4, $Background/Bullet5, $Background/Bullet6, $Background/Bullet7]
 @onready var main = $"../main"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if main.ammo == 6:
 		bullets[0].visible = false
 	elif main.ammo == 5:

@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://ck5cqiqjpirml"]
+
+[ext_resource type="Script" path="res://weapons/weapon_data.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bgxlyov6qk5xx" path="res://assets/bullet_hole.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+weapon_name = "Pistol"
+viewmodel_root_path = NodePath("../CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol")
+animation_player_path = NodePath("../CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol/animplayer")
+aimcast_path = NodePath("../CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/RayCast3D")
+muzzle_path = NodePath("")
+muzzle_bone_name = "tag_flash_end_099"
+fire_sound_path = NodePath("../CharacterBody3D/firesound")
+dry_fire_sound_path = NodePath("../CharacterBody3D/dryFireSound")
+fire_animation_name = "attachment_vm_pi_papa320_mag_skeleton|fire1"
+reload_animation_name = "attachment_vm_pi_papa320_mag_skeleton|reload_empty"
+draw_animation_name = "attachment_vm_pi_papa320_mag_skeleton|draw_first"
+draw_empty_animation_name = "attachment_vm_pi_papa320_mag_skeleton|draw_empty"
+idle_animation_name = "attachment_vm_pi_papa320_mag_skeleton|idle"
+ads_animation_name = "ads"
+magazine_size = 7
+starting_magazine_ammo = 7
+starting_reserve_ammo = 21
+damage = 50
+weapon_range = 3500.0
+fire_delay = 0.22
+reload_time = 1.45
+base_spread_deg = 0.05
+move_spread_deg = 2.2
+air_spread_deg = 3.5
+crouch_spread_multiplier = 0.55
+ads_spread_multiplier = 0.4
+still_spread_multiplier = 0.12
+movement_speed_reference = 5.5
+stop_speed_threshold = 0.08
+recoil_pattern = Array[Vector2]([Vector2(0, -0.08), Vector2(0.12, -0.12), Vector2(-0.1, -0.16), Vector2(0.16, -0.18), Vector2(-0.14, -0.12), Vector2(0.06, -0.08), Vector2(0, -0.05)])
+impact_decal_texture = ExtResource("2")
+impact_decal_size = Vector3(0.18, 0.18, 0.18)
+tracer_color = Color(1, 0.92, 0.65, 1)
+tracer_lifetime = 0.04

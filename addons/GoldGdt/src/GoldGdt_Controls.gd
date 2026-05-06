@@ -1,11 +1,14 @@
 @icon("gdticon.png")
 class_name GoldGdt_Controls extends Node
 
+const SOURCE_MOUSE_YAW : float = 0.022
+
 @export_group("Components")
 @export var Parameters : PlayerParameters
 @export var Body : GoldGdt_Body
 @export var Move : GoldGdt_Move
 @export var View : GoldGdt_View
+@onready var game_main = get_parent().get_node_or_null("main")
 
 # Inputs
 var movement_input : Vector2
@@ -13,6 +16,7 @@ var mouse_input : Vector2
 var move_dir : Vector3
 var jump_on : bool
 var duck_on : bool
+var walk_on : bool
 
 func _ready() -> void:
 	Input.set_use_accumulated_input(false) # Disable accumulated input for precise inputs.
@@ -30,7 +34,7 @@ func _input(event) -> void:
 				get_tree().quit()
 		
 		if event is InputEventMouseButton:
-			if event.button_index == 1:
+			if event.button_index == MOUSE_BUTTON_LEFT and not _is_debug_menu_open():
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		return
 	
@@ -57,11 +61,9 @@ func _gather_mouse_input(event: InputEventMouseMotion) -> void:
 	var viewport_transform := get_tree().root.get_final_transform()
 	mouse_input += event.xformed_by(viewport_transform).relative
 	
-	var degrees_per_unit : float = 0.0001
-	
 	# Modify mouse input based on sensitivity and granularity.
 	mouse_input *= Parameters.MOUSE_SENSITIVITY
-	mouse_input *= degrees_per_unit
+	mouse_input *= deg_to_rad(SOURCE_MOUSE_YAW)
 	
 	# Send it off to the View Control component.
 	View._handle_camera_input(mouse_input)
@@ -70,17 +72,20 @@ func _gather_input() -> void:
 	# Get input strength on the horizontal axes.
 	var ix = Input.get_action_raw_strength("pm_moveright") - Input.get_action_raw_strength("pm_moveleft")
 	var iy = Input.get_action_raw_strength("pm_movebackward") - Input.get_action_raw_strength("pm_moveforward")
+	walk_on = Input.is_action_pressed("pm_walk") or Input.is_key_pressed(KEY_SHIFT)
 	
 	# Collect input.
 	movement_input = Vector2(ix, iy).normalized()
 	
 	# Gather the horizontal speeds.
 	var speeds := Vector2(Parameters.SIDE_SPEED, Parameters.FORWARD_SPEED)
+	var move_multiplier := Parameters.WALK_SPEED_MULTIPLIER if walk_on else 1.0
 	
 	# Clamp down the horizontal speeds to MAX_SPEED.
 	for i in range(2):
 		if speeds[i] > Parameters.MAX_SPEED:
 			speeds[i] *= Parameters.MAX_SPEED / speeds[i]
+		speeds[i] *= move_multiplier
 	
 	# Create vector that stores speed and direction.
 	move_dir = Vector3(movement_input.x * speeds.x, 0, movement_input.y * speeds.y).rotated(Vector3.UP, View.horizontal_view.rotation.y)
@@ -114,3 +119,7 @@ func _act_on_input() -> void:
 			Move._accelerate(delta, move_dir.normalized(), move_dir.length(), Parameters.ACCELERATION)
 	else: 
 		Move._airaccelerate(delta, move_dir.normalized(), move_dir.length(), Parameters.AIR_ACCELERATION)
+
+
+func _is_debug_menu_open() -> bool:
+	return game_main != null and game_main.debug_menu_open

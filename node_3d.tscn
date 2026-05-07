@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://ckciaiwwtbl42"]
+[gd_scene load_steps=86 format=4 uid="uid://ckciaiwwtbl42"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_4q1sr"]
 [ext_resource type="Script" path="res://node_3d.gd" id="1_6d13t"]
@@ -36,7 +36,12 @@
 [ext_resource type="AudioStream" uid="uid://dvm1eb2a3t11f" path="res://assets/9mm Pistol Rack Full.wav" id="19_7m7ig"]
 [ext_resource type="PackedScene" uid="uid://i1xsfxvo8ctf" path="res://UI.tscn" id="19_gp0qn"]
 [ext_resource type="Script" path="res://functions/main.gd" id="20_qylfc"]
+[ext_resource type="Script" path="res://systems/economy_manager.gd" id="21_economy"]
 [ext_resource type="PackedScene" uid="uid://b1kifqeod4uaf" path="res://assets/the_tablet.tscn" id="21_kc5x8"]
+[ext_resource type="Script" path="res://systems/round_manager.gd" id="22_round"]
+[ext_resource type="Script" path="res://damage/damage_system.gd" id="23_damage"]
+[ext_resource type="Script" path="res://objectives/bomb_objective.gd" id="24_bomb"]
+[ext_resource type="Script" path="res://debug/firing_range_debug.gd" id="25_range"]
 [ext_resource type="Texture2D" uid="uid://ckh0nnjjs10x7" path="res://assets/Epic_BlueSunset_EquiRect_flat.png" id="30_38phr"]
 [ext_resource type="PackedScene" uid="uid://dcoipuh7nvxth" path="res://nukeui.tscn" id="35_4n8sh"]
 
@@ -756,7 +761,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_uqypo"]
@@ -6546,34 +6551,42 @@ bones/141/rotation = Quaternion(-3.98986e-17, -2.77556e-17, -2.77556e-17, 1)
 bones/141/scale = Vector3(1, 1, 1)
 
 [node name="Object_13" type="MeshInstance3D" parent="CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol/Sketchfab_model/a6739a8e5ad042b5ae00aa16b6c60dbd_fbx/Object_2/RootNode/attachment_vm_pi_papa320_mag_skeleton/Object_10/Skeleton3D"]
+visible = false
 mesh = SubResource("ArrayMesh_6ayu0")
 skin = SubResource("Skin_816a3")
 
 [node name="Object_15" type="MeshInstance3D" parent="CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol/Sketchfab_model/a6739a8e5ad042b5ae00aa16b6c60dbd_fbx/Object_2/RootNode/attachment_vm_pi_papa320_mag_skeleton/Object_10/Skeleton3D"]
+visible = false
 mesh = SubResource("ArrayMesh_u8o1g")
 skin = SubResource("Skin_816a3")
 
 [node name="Object_17" type="MeshInstance3D" parent="CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol/Sketchfab_model/a6739a8e5ad042b5ae00aa16b6c60dbd_fbx/Object_2/RootNode/attachment_vm_pi_papa320_mag_skeleton/Object_10/Skeleton3D"]
+visible = false
 mesh = SubResource("ArrayMesh_2237u")
 skin = SubResource("Skin_816a3")
 
 [node name="Object_18" type="MeshInstance3D" parent="CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol/Sketchfab_model/a6739a8e5ad042b5ae00aa16b6c60dbd_fbx/Object_2/RootNode/attachment_vm_pi_papa320_mag_skeleton/Object_10/Skeleton3D"]
+visible = false
 mesh = SubResource("ArrayMesh_qydmu")
 skin = SubResource("Skin_816a3")
 
 [node name="Object_19" type="MeshInstance3D" parent="CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol/Sketchfab_model/a6739a8e5ad042b5ae00aa16b6c60dbd_fbx/Object_2/RootNode/attachment_vm_pi_papa320_mag_skeleton/Object_10/Skeleton3D"]
+visible = false
 mesh = SubResource("ArrayMesh_nv7fq")
 skin = SubResource("Skin_816a3")
 
 [node name="Object_21" type="MeshInstance3D" parent="CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol/Sketchfab_model/a6739a8e5ad042b5ae00aa16b6c60dbd_fbx/Object_2/RootNode/attachment_vm_pi_papa320_mag_skeleton/Object_10/Skeleton3D"]
+visible = false
 mesh = SubResource("ArrayMesh_i6rdq")
 skin = SubResource("Skin_816a3")
 
 [node name="Object_22" type="MeshInstance3D" parent="CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol/Sketchfab_model/a6739a8e5ad042b5ae00aa16b6c60dbd_fbx/Object_2/RootNode/attachment_vm_pi_papa320_mag_skeleton/Object_10/Skeleton3D"]
+visible = false
 mesh = SubResource("ArrayMesh_wnvsg")
 skin = SubResource("Skin_816a3")
 
 [node name="Object_24" type="MeshInstance3D" parent="CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol/Sketchfab_model/a6739a8e5ad042b5ae00aa16b6c60dbd_fbx/Object_2/RootNode/attachment_vm_pi_papa320_mag_skeleton/Object_10/Skeleton3D"]
+visible = false
 mesh = SubResource("ArrayMesh_tstgf")
 skin = SubResource("Skin_816a3")
 
@@ -6670,6 +6683,22 @@ size = Vector3(1, 15.9844, 107.017)
 [node name="main" type="Node" parent="."]
 script = ExtResource("20_qylfc")
 
+[node name="EconomyManager" type="Node" parent="."]
+script = ExtResource("21_economy")
+
+[node name="RoundManager" type="Node" parent="."]
+script = ExtResource("22_round")
+
+[node name="DamageSystem" type="Node" parent="."]
+script = ExtResource("23_damage")
+
+[node name="BombObjective" type="Node3D" parent="."]
+visible = false
+script = ExtResource("24_bomb")
+
+[node name="FiringRangeDebug" type="CanvasLayer" parent="."]
+script = ExtResource("25_range")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_pk51u")
@@ -6687,8 +6716,6 @@ compositor = SubResource("Compositor_gddlu")
 transform = Transform3D(1, 0, 0, 0, 0.936883, 0.349643, 0, -0.349643, 0.936883, -3.58286, 27.809, 51.4346)
 sky_mode = 1
 
-[connection signal="animation_finished" from="CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol/animplayer" to="main" method="_on_animplayer_animation_finished"]
-[connection signal="animation_started" from="CharacterBody3D/Horizontal View/Vertical View/Camera Mount/Camera3D/pistol/animplayer" to="main" method="_on_animplayer_animation_started"]
 [connection signal="animation_finished" from="AnimationPlayer" to="HUD" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="HUD" method="_on_animation_player_animation_started"]
 

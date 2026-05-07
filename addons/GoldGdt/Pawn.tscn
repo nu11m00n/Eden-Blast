@@ -1,13 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://bk1exu1p74wrs"]
+[gd_scene load_steps=14 format=3 uid="uid://bk1exu1p74wrs"]
 
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_Pawn.gd" id="1_qx48f"]
 [ext_resource type="Resource" uid="uid://c770d2068in3p" path="res://addons/GoldGdt/Default.tres" id="2_m0ukv"]
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_Controls.gd" id="3_sa8ga"]
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_Move.gd" id="4_5gavo"]
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_View.gd" id="5_say2d"]
-[ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_Body.gd" id="6_k6qi8"]
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_Camera.gd" id="7_3b78s"]
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_DebugUI.gd" id="7_vbtkw"]
+[ext_resource type="AudioStream" uid="uid://5wgq6fdynnmo" path="res://assets/762x39 Single Isolated WAV.wav" id="8_fire"]
+[ext_resource type="AudioStream" uid="uid://dagj2gp0b4x1i" path="res://assets/9mm Pistol Dry Fire.wav" id="9_dry"]
+[ext_resource type="Script" path="res://player.gd" id="11_player"]
+[ext_resource type="Script" path="res://functions/main.gd" id="12_main"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j7pn1"]
 size = Vector3(0.813, 1.829, 0.813)
@@ -176,7 +179,7 @@ Body = NodePath("../Body")
 [node name="Body" type="CharacterBody3D" parent="." node_paths=PackedStringArray("View", "collision_hull", "duck_timer")]
 collision_layer = 2
 floor_constant_speed = true
-script = ExtResource("6_k6qi8")
+script = ExtResource("11_player")
 Parameters = ExtResource("2_m0ukv")
 View = NodePath("../View Control")
 collision_hull = NodePath("Collision Hull")
@@ -186,6 +189,12 @@ duck_timer = NodePath("Duck Timer")
 shape = SubResource("BoxShape3D_j7pn1")
 
 [node name="Duck Timer" type="Timer" parent="Body"]
+
+[node name="firesound" type="AudioStreamPlayer" parent="Body"]
+stream = ExtResource("8_fire")
+
+[node name="dryFireSound" type="AudioStreamPlayer" parent="Body"]
+stream = ExtResource("9_dry")
 
 [node name="Horizontal View" type="Node3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711, 0)
@@ -216,3 +225,9 @@ editor_description = "
 [node name="Camera" type="Camera3D" parent="Interpolated Camera/Arm/Arm Anchor"]
 fov = 105.0
 near = 0.001
+
+[node name="RayCast3D" type="RayCast3D" parent="Interpolated Camera/Arm/Arm Anchor/Camera"]
+target_position = Vector3(0, 0, -3500)
+
+[node name="main" type="Node" parent="."]
+script = ExtResource("12_main")

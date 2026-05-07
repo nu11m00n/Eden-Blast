@@ -20,11 +20,16 @@ var _strafe_timer: float = 0.0
 
 func _ready() -> void:
 	add_to_group("enemy")
+	add_to_group("damageable")
 	randomize()
 	can_sleep = false
 	axis_lock_angular_x = true
 	axis_lock_angular_z = true
 	_pick_new_strafe_direction()
+
+
+func apply_damage(amount: int, _direction: Vector3 = Vector3.ZERO) -> void:
+	health -= amount
 
 
 func _physics_process(delta: float) -> void:

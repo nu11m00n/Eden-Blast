@@ -3,6 +3,11 @@ class_name WeaponData
 extends Resource
 
 @export var weapon_name := "Weapon"
+@export_enum("rifle", "smg", "sniper", "pistol", "heavy_pistol") var weapon_class := "rifle"
+@export var viewmodel_scene: PackedScene
+@export var viewmodel_transform := Transform3D.IDENTITY
+@export var buy_price := 0
+@export var kill_reward := 300
 @export var viewmodel_root_path := NodePath()
 @export var animation_player_path := NodePath()
 @export var aimcast_path := NodePath()
@@ -22,18 +27,31 @@ extends Resource
 @export var starting_magazine_ammo := 1
 @export var starting_reserve_ammo := 0
 @export var damage := 1
+@export_range(0.0, 1.0, 0.01) var armor_penetration := 0.5
+@export var head_multiplier := 4.0
+@export var body_multiplier := 1.0
+@export var limb_multiplier := 0.75
 @export var weapon_range := 1000.0
 @export var fire_delay := 0.25
+@export var automatic := false
 @export var reload_time := 1.0
 
 @export var base_spread_deg := 0.0
+@export var standing_spread_deg := 0.0
+@export var crouch_spread_deg := 0.0
 @export var move_spread_deg := 2.0
+@export var jump_spread_deg := 4.0
 @export var air_spread_deg := 4.0
 @export var crouch_spread_multiplier := 0.6
 @export var ads_spread_multiplier := 0.4
 @export var still_spread_multiplier := 0.2
 @export var movement_speed_reference := 6.0
 @export var stop_speed_threshold := 0.1
+@export var counter_strafe_speed_threshold := 0.35
+@export var spread_recovery_speed := 12.0
+@export var recoil_climb := 0.1
+@export var horizontal_recoil_variance := 0.2
+@export var sustained_random_recoil_after := 12
 
 @export var recoil_pattern: Array[Vector2] = []
 

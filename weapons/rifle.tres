@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://1elcv7ypoyj7"]
+
+[ext_resource type="Script" path="res://weapons/weapon_data.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bgxlyov6qk5xx" path="res://assets/bullet_hole.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://bhsg21b5326jv" path="res://rifle.tscn" id="3"]
+
+[resource]
+script = ExtResource("1")
+weapon_name = "Rifle"
+weapon_class = "rifle"
+viewmodel_scene = ExtResource("3")
+viewmodel_transform = Transform3D(-0.42, 0, 0, 0, 0.42, 0, 0, 0, -0.42, 0.32, -0.55, -0.58)
+buy_price = 2700
+kill_reward = 300
+viewmodel_root_path = NodePath("../Interpolated Camera/Arm/Arm Anchor/Camera/rifle")
+animation_player_path = NodePath("../Interpolated Camera/Arm/Arm Anchor/Camera/rifle/animplayer")
+aimcast_path = NodePath("../Interpolated Camera/Arm/Arm Anchor/Camera/RayCast3D")
+muzzle_path = NodePath("../Interpolated Camera/Arm/Arm Anchor/Camera/rifle/muzzle")
+muzzle_bone_name = ""
+fire_sound_path = NodePath("../Body/firesound")
+dry_fire_sound_path = NodePath("../Body/dryFireSound")
+fire_animation_name = "Arms_Fire"
+reload_animation_name = "Arms_fullreload"
+draw_animation_name = "Arms_Draw"
+draw_empty_animation_name = "Arms_Draw"
+idle_animation_name = "Arms_Idle"
+ads_animation_name = ""
+magazine_size = 30
+starting_magazine_ammo = 30
+starting_reserve_ammo = 90
+damage = 32
+armor_penetration = 0.74
+head_multiplier = 4.0
+body_multiplier = 1.0
+limb_multiplier = 0.75
+weapon_range = 3500.0
+fire_delay = 0.09
+automatic = true
+reload_time = 2.1
+base_spread_deg = 0.0
+standing_spread_deg = 0.025
+crouch_spread_deg = 0.015
+move_spread_deg = 2.6
+jump_spread_deg = 8.0
+air_spread_deg = 4.0
+crouch_spread_multiplier = 0.55
+ads_spread_multiplier = 0.35
+still_spread_multiplier = 0.0
+movement_speed_reference = 5.5
+stop_speed_threshold = 0.08
+counter_strafe_speed_threshold = 0.35
+spread_recovery_speed = 14.0
+recoil_climb = 0.12
+horizontal_recoil_variance = 0.45
+sustained_random_recoil_after = 12
+recoil_pattern = Array[Vector2]([Vector2(0, 0), Vector2(0, -0.18), Vector2(0, -0.36), Vector2(0, -0.54), Vector2(0.22, -0.72), Vector2(0.44, -0.9), Vector2(0.66, -1.08), Vector2(0.88, -1.26), Vector2(0.44, -1.26), Vector2(0, -1.26), Vector2(-0.44, -1.26), Vector2(-0.88, -1.26)])
+impact_decal_texture = ExtResource("2")
+impact_decal_size = Vector3(0.18, 0.18, 0.18)
+tracer_color = Color(1, 0.9, 0.45, 1)
+tracer_lifetime = 0.04

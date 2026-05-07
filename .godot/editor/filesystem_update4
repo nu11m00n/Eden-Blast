@@ -3,7 +3,7 @@ res://HUD.tscn
 res://UI.tscn
 res://assets/the_tablet.tscn
 res://nukeui.tscn
-res://player.gd
-res://addons/GoldGdt/Default.tres
-res://weapons/pistol.tres
 res://pistol.tscn
+res://rifle.tscn
+res://weapons/rifle.tres
+res://weapons/pistol.tres
